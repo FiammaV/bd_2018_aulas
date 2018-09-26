@@ -1,18 +1,19 @@
 <!--
-Aulas de Bases de Dados 2018/2019 (c) by Diogo Andrade
+GenMatches (c) by Diogo Andrade
 
-Aulas de Bases de Dados 2018/2019 is licensed under a
+GenMatches is licensed under a
 Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
 
 You should have received a copy of the license along with this
 work. If not, see <http://creativecommons.org/licenses/by-nc-sa/4.0/>.
 -->
 
-# Aulas de Bases de Dados 2018/2019
+# GenMatches
 
-Este repositório contém os ficheiros usados nas aulas de Bases de
-Dados do semestre 2018/2019 do curso de [Videojogos][licvideo]
-da [ULHT].
+Esta aplicação só gera dados aleatórios de partidas para serem alimentados numa bases de dados 
+para os exercícios da aula 1.
+A aplicação foi escrita em C, utilizando o Visual Studio 2017, para o contexto da disciplina de 
+Base de Dados do semestre 2018/2019 do curso de [Videojogos][licvideo] da [ULHT].
 
 ## Licenças
 
