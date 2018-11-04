@@ -262,3 +262,6 @@ __pycache__/
 
 # Dropbox
 .dropbox.attr
+
+# Unity
+Library/
