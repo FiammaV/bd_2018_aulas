@@ -80,6 +80,8 @@ public class DatabaseInterface : MonoBehaviour
 
         if (!FetchData()) return false;
 
+        SelectInitialPlanet();
+
         if (!FetchData()) return false;
 
         return true;
@@ -90,7 +92,7 @@ public class DatabaseInterface : MonoBehaviour
         if (!Connect()) return false;
 
         if (!FetchPlanets()) return false;
-//        if (!FetchResources()) return false;
+        if (!FetchResources()) return false;
 
         return true;
     }
@@ -106,7 +108,7 @@ public class DatabaseInterface : MonoBehaviour
         ClearStructure();
 
         if (!CreateStructurePlanets()) return false;
-//        if (!CreateStructureResources()) return false;
+        if (!CreateStructureResources()) return false;
 
         return true;
     }
@@ -127,6 +129,26 @@ public class DatabaseInterface : MonoBehaviour
         createPlanetQuery += ");";
 
         return RunQuery(createPlanetQuery);
+    }
+
+    bool CreateStructureResources()
+    {
+        // Create planet structure
+        string createResourcesQuery = "";
+        createResourcesQuery += "CREATE TABLE " + tableResources + "(";
+        createResourcesQuery += "  PlayerID INT NOT NULL PRIMARY KEY,";
+        createResourcesQuery += "  Metal FLOAT NOT NULL DEFAULT 0,";
+        createResourcesQuery += "  Bio FLOAT NOT NULL DEFAULT 0,";
+        createResourcesQuery += "  Water FLOAT NOT NULL DEFAULT 0,";
+        createResourcesQuery += ");";
+
+        if (!RunQuery(createResourcesQuery)) return false;
+
+        string sqlInsert = "INSERT INTO " + tableResources + " VALUES (1, 0, 0, 0)";
+
+        if (!RunQuery(sqlInsert)) return false;
+
+        return true;
     }
 
     bool CreatePlanets(int nPlanets)
@@ -214,7 +236,48 @@ public class DatabaseInterface : MonoBehaviour
 
         return true;
     }
-    
+
+    bool FetchResources()
+    {
+        SqlDataReader dataReader = null;
+
+        if (RunQuery(string.Format("SELECT * FROM {0} WHERE PlayerID = 1", tableResources), ref dataReader))
+        {
+            while (dataReader.Read())
+            {
+                metal = (float)dataReader.GetDouble(dataReader.GetOrdinal("Metal"));
+                bio = (float)dataReader.GetDouble(dataReader.GetOrdinal("Bio"));
+                water = (float)dataReader.GetDouble(dataReader.GetOrdinal("Water"));
+
+                break;
+            }
+        }
+
+        if (dataReader != null) dataReader.Close();
+
+        return true;
+    }
+
+    bool SelectInitialPlanet()
+    {
+        int planetIndex = UnityEngine.Random.Range(0, planets.Count);
+        int planetId = planets[planetIndex].id;
+
+        return SetPlanetOwnedByPlayer(planetId, true);
+    }
+
+    bool SetPlanetOwnedByPlayer(int planetId, bool owned)
+    {
+        string updateQuery = string.Format("UPDATE {0} SET PlayerOwned = {1} WHERE PlanetID = {2}",
+                                           tablePlanets,
+                                           (owned) ? (1) : (0),
+                                           planetId);
+
+        if (!RunQuery(updateQuery)) return false;
+
+        return true;
+    }
+
     public void UpdateDatabase()
     {
     }
