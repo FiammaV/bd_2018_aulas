@@ -80,6 +80,8 @@ public class DatabaseInterface : MonoBehaviour
 
         if (!FetchData()) return false;
 
+        if (!FetchData()) return false;
+
         return true;
     }
 
@@ -127,7 +129,6 @@ public class DatabaseInterface : MonoBehaviour
         return RunQuery(createPlanetQuery);
     }
 
-
     bool CreatePlanets(int nPlanets)
     {
         for (int i = 0; i < nPlanets; i++)
@@ -144,8 +145,6 @@ public class DatabaseInterface : MonoBehaviour
 
             if (!RunQuery(sqlInsert)) return false;
         }
-
-//        SelectInitialPlanet();
 
         return true;
     }

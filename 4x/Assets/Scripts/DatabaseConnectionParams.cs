@@ -27,7 +27,7 @@ class DatabaseInterfaceEditor : Editor
         connectionParams.dataSource = EditorGUILayout.TextField("Data Source", connectionParams.dataSource);
         connectionParams.databaseName = EditorGUILayout.TextField("Database", connectionParams.databaseName);
         connectionParams.username = EditorGUILayout.TextField("Username", connectionParams.username);
-        connectionParams.password = EditorGUILayout.PasswordField("Data Source", connectionParams.password);
+        connectionParams.password = EditorGUILayout.PasswordField("Password", connectionParams.password);
         if (EditorGUI.EndChangeCheck())
         {
             EditorUtility.SetDirty(connectionParams);

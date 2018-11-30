@@ -355,7 +355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f2308c19ffde4e44bc984a56f07ef63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  connectionParams: {fileID: 11400000, guid: 12aa091e60d27b346b618c63204018e0, type: 2}
+  connectionParams: {fileID: 0}
   tablePlanets: GD_Planets
   tableResources: GD_Resources
 --- !u!4 &924575098
