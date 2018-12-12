@@ -280,6 +280,7 @@ public class DatabaseInterface : MonoBehaviour
 
     public void UpdateDatabase()
     {
+        
     }
 
     public static int GetPlanetCount()
